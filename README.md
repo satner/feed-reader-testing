@@ -4,7 +4,7 @@ In this project you are given a web-based application that reads RSS feeds. The 
 
 # Run the application locally
 
-1. Clone the repository *command*
+1. Clone the repository *command* `git clone https://github.com/satner/feed-reader-testing.git`
 2. Open index.html file with some browser
 
 # Tests

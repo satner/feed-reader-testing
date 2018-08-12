@@ -40,22 +40,25 @@ $(function() {
     });
 
     describe('The menu', function() {
+      const body = document.querySelector("body");
+
       it('menu is hidden by default', function() {
-          expect(document.body.getAttribute('class')).toBe("menu-hidden");
+          expect(body.classList.contains("menu-hidden")).toBe(true);
       });
 
       it('unhide menu', function() {
         $('.menu-icon-link').trigger('click');
-        expect(document.body.getAttribute('class')).toBe("");
+        expect(body.classList.contains("menu-hidden")).toBe(false);
       });
 
       it('hide menu', function() {
         $('.menu-icon-link').trigger('click');
-        expect(document.body.getAttribute('class')).toBe("menu-hidden");
+        expect(body.classList.contains("menu-hidden")).toBe(true);
       });
     });
 
     describe('Initial Entries', function() {
+      // Do the async call
       beforeEach(function(done) {
         loadFeed(0, function() {
           done();
@@ -63,7 +66,8 @@ $(function() {
       });
 
       it('loading feed is working', function(done) {
-        expect(document.querySelector('.feed .entry')).not.toBe(null);
+        const feed = document.querySelector(".feed").querySelectorAll('.entry');
+        expect(feed.length > 0).toBe(true);
         done();
       });
     });
@@ -71,6 +75,7 @@ $(function() {
    describe('New Feed Selection', function() {
      let feedZero;
 
+     // Do the async call
      beforeEach(function(done) {
        loadFeed(0, function() {
          feedZero = document.querySelector('.feed').innerHTML;
@@ -80,6 +85,7 @@ $(function() {
        });
      });
 
+     // Check feed one with feed two
      it('loading different feeds', function(done) {
        expect(document.querySelector('.feed').innerHTML).not.toBe(feedZero);
        done();
